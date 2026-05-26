@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vimal.app.request.ClockInRequest;
+import com.vimal.app.request.ClockOutRequest;
 import com.vimal.app.response.PaginationResponse;
 import com.vimal.app.service.AttendanceService;
 
@@ -32,7 +33,7 @@ public class AttendanceController {
     }
 
     @PostMapping("clock-out")
-    public ResponseEntity<String> clockOut(@Valid @RequestBody ClockInRequest request) {
+    public ResponseEntity<String> clockOut(@Valid @RequestBody ClockOutRequest request) {
         attendanceService.clockOut(request.workerId());
         return ResponseEntity.ok("Clock out successful");
     }
