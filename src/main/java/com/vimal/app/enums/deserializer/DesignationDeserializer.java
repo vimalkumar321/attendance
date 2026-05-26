@@ -1,0 +1,32 @@
+package com.vimal.app.enums.deserializer;
+
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.vimal.app.enums.Designation;
+
+public class DesignationDeserializer extends JsonDeserializer<Designation>{
+
+	@Override
+	public Designation deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JacksonException {
+		ObjectCodec oc = p.getCodec();
+        JsonNode node = oc.readTree(p);
+
+        if (node == null) {
+            return null;
+        }
+
+        String text = node.textValue();
+
+        if (text == null) {
+            return null;
+        }
+        return Designation.fromText(text);
+	}
+
+}

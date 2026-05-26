@@ -1,0 +1,38 @@
+server:
+  servlet:
+    context-path: /api/
+spring:
+  application:
+    name: attendance
+  datasource:
+    url: jdbc:mysql://localhost:3306/attendance_db?createDatabaseIfNotExist=true
+    username: root
+    password: Oodles@123
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 5
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      keepalive-time: 30000
+      connection-timeout: 5000
+      validation-timeout: 3000
+      leak-detection-threshold: 10000
+      connection-test-query: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 
+      database: 0
+      timeout: 2000
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 2
+          max-wait: -1ms
